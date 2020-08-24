@@ -3,12 +3,19 @@
 Nessa aula veremos como trabalhar com quantidades maiores de dados ao mesmo tempo, utilizando estruturas que chamamos de arrays e objetos. 
 
 [Arrays](##-Arrays)
-* [`return` x `console.log()`](###-Return-x-Console)
-* [Declaração de função x expressão de função](###-Declaração-de-Função-x-Expressão-de-função)
-* [Arrow Function](###-Arrow-Functions-(função-seta))
-* [IIFE](###-iife)
-* [Dicas para escrever funções](###-Dicas)
-* [Links e referências](###-Links)
+* [Alterando arrays](###-Alterando-arrays)
+* [Iterando arrays](###-Iterando-arrays)
+* [O que é protótipo](###-O-que-é-protótipo)
+* [Métodos comuns de array](###-Métodos-comuns-de-array)
+
+[Objetos](##-Objetos)
+* [Acessando informações de um objeto](###-Acessando-informações-de-um-objeto)
+* [Criando ou alterando um objeto](###-Criando-ou-alterando-um-objeto)
+* [Manipulando arrays e objetos](###-Manipulando-arrays-e-objetos)
+* [`for in` e `for of`](###-For...-in-e-for...-of)
+* [`filter`, `map`, `sort` e `reduce`](###-`filter`,-`map`,-`sort`-e-`reduce`)
+* [Outros métodos](###-Outros-métodos)
+* [Links](###-Links)
 
 ***
 
@@ -526,7 +533,7 @@ for (caracteristica in livro) {
 
 Aqui, `caracteristica` é o nome que damos para a variável que faz o papel de `let i` (ou seja, a variável que será iterada). O importante é ver como fazemos para acessar a chave e o valor do objeto: chamando apenas a variável (no caso, `caracteristicas`), o for traz as chaves, porém se queremos o *valor* das chaves, usamos a notação de colchetes como já fizemos antes: `livro[caracteristica]`.
 
-#### `filter`, `map`, `sort` e `reduce`
+### `filter`, `map`, `sort` e `reduce`
 
 Já vimos vários métodos úteis, mas separamos estes pois sua sintaxe é um pouco diferente.
 
