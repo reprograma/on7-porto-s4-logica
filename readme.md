@@ -11,9 +11,13 @@ Nessa aula veremos como trabalhar com quantidades maiores de dados ao mesmo temp
 [Objetos](##-Objetos)
 * [Acessando informações de um objeto](###-Acessando-informações-de-um-objeto)
 * [Criando ou alterando um objeto](###-Criando-ou-alterando-um-objeto)
-* [Manipulando arrays e objetos](###-Manipulando-arrays-e-objetos)
+
+[Manipulando arrays e objetos](###-Manipulando-arrays-e-objetos)
 * [`for in` e `for of`](###-For...-in-e-for...-of)
-* [`filter`, `map`, `sort` e `reduce`](###-`filter`,-`map`,-`sort`-e-`reduce`)
+* [`filter`, `map` e `forEach`](###-`filter`,-`map`,-`forEach`)
+  - [`filter`](###-`.filter()`)
+  - [`map`](###-`.map()`)
+  - [`forEach`](###-`.forEach()`)
 * [Outros métodos](###-Outros-métodos)
 * [Links](###-Links)
 
@@ -397,7 +401,7 @@ pessoa.matriculada = false
 
 Com a sintaxe acima conseguimos criar novos pares de chave-valor em um objeto; se o par já existir, o valor é substituído.
 
-### Manipulando arrays e objetos
+## Manipulando arrays e objetos
 
 Essas duas estruturas são muito comuns quando lidamos com dados:
 
@@ -533,30 +537,133 @@ for (caracteristica in livro) {
 
 Aqui, `caracteristica` é o nome que damos para a variável que faz o papel de `let i` (ou seja, a variável que será iterada). O importante é ver como fazemos para acessar a chave e o valor do objeto: chamando apenas a variável (no caso, `caracteristicas`), o for traz as chaves, porém se queremos o *valor* das chaves, usamos a notação de colchetes como já fizemos antes: `livro[caracteristica]`.
 
-### `filter`, `map`, `sort` e `reduce`
+### `filter`, `map`, `forEach` e `reduce`
 
 Já vimos vários métodos úteis, mas separamos estes pois sua sintaxe é um pouco diferente.
 
 * `filter()` filtra elementos e cria um novo array
 * `map()` mapeia a array, executa a instrução e devolve um novo array como resultado.
-* `sort()` ordena os elementos do próprio array e retorna o array.
 * `forEach()` executa uma dada função em cada elemento de um array, sem retornar.
 * `reduce()` executa uma função redutora para cada ítem do array, com num único valor de retorno.
 
 
+#### `filter()`
+
+Usamos para trazer um subconjunto dos elementos da array, desde que cumpram uma certa condição.
+*O resultado é sempre uma nova array com os elementos filtrados (ou uma array vazia se não encontrar nada)*
+
+```js
+const numeros = [34, 62, 7447, 764, 86, 657, 87, 9]
+
+const maioresQueCinquenta = numeros.filter(numero => numero > 50)
+console.log(maioresQueCinquenta) // [ 62, 7447, 764, 86, 657, 87 ]
+```
+
+Podemos usar o `.filter()` para fazer coisas mais complexas com uma array de objetos! Caso o filtro encontre o valor procurado em qualquer valor dentro do objeto, o objeto inteiro é copiado para dentro da nova array de resultados.
+
+```js
+const pokemons = 
+[
+  { id: 1, name: "Bulbasaur", type: [ "Grass", "Poison" ] }, 
+  { id: 2, name: "Ivysaur", type: [ "Grass", "Poison" ] }, 
+  { id: 4, name: "Charmander", type: [ "Fire" ] }
+]
+
+const grassPokemonsFunction = pokemons
+  .filter(function(pokemon) {
+    pokemon.type[0] === "Grass"
+  })
+
+//a mesma coisa, com arrow function 
+const grassPokemonsArrowFunction = pokemons
+  .filter(pokemon => pokemon.type[0] === "Grass")
+
+console.log(grassPokemons)
+// [ { id: 1, name: 'Bulbasaur', type: [ 'Grass', 'Poison' ] },
+//   { id: 2, name: 'Ivysaur', type: [ 'Grass', 'Poison' ] } ]
+```
+
+Encontrou uma array dentro de outra array? Não tem problema, você pode iterar por ela também. A array interna, nesse exemplo, é o valor da propriedade `pokemon.type`. Vamos usar outro método em conjunto com o `.filter()` chamado `.includes()`, que verifica se determinado valor existe na array e retorna `true` ou `false`.
+
+```js
+const grassPokemonsFunction = pokemons
+  .filter(function(pokemon) {
+    return pokemon.type.includes("Grass") === true
+  })
+
+//a mesma coisa, com arrow function 
+const grassPokemonsArrowFunction = pokemons
+  .filter(pokemon => pokemon.type.includes("Grass") === true)
+```
+
+#### `.map()`
+
+Com esse método podemos entrar em cada um dos elementos da array, coletando neste processo um valor de retorno para cada elemento visitado. O `.map()` é um dos métodos que mais usamos no dia-a-dia para percorrer arrays, medificá-las e formar novas arrays com os elementos que queremos.
+
+Por exemplo, para obtermos uma lista somente com os nomes dos Pokemóns. Lembrando que o retorno *sempre* será uma array com os resultados dentro!
+
+```js
+const pokemons = 
+[{
+  id: 1,
+  name: "Bulbasaur",
+  type: [ "Grass", "Poison" ],
+}, 
+{
+  id: 2,
+  name: "Ivysaur",
+  type: [ "Grass", "Poison" ],
+}, 
+{
+  id: 4,
+  name: "Charmander",
+  type: [ "Fire" ],
+}]
 
 
+const nomesPokemons = pokemons.map(function(pokemon) {
+    return pokemon.name
+  })
 
+//a mesma coisa, com arrow function 
+const nomesPokemonsArrow = pokemons.map(pokemon => pokemon.name)
 
+console.log(nomesPokemons) // [ 'Bulbasaur', 'Ivysaur', 'Charmander' ]
+console.log(nomesPokemonsArrow) // [ 'Bulbasaur', 'Ivysaur', 'Charmander' ]
+```
 
+#### `forEach()`
 
+"For each" significa, em inglês, "para cada". No contexto, esse método significa que "*para cada* elemento da array, faça X".
+Importante: *Ao contrário do map, o forEach não retorna uma array com os resultados!* Ele não retorna nenhum dado, apenas percorre a array e faz o que for pedido no código.
 
+Continuando com os Pokémons:
+
+```js
+let listaNomes = ''
+const nomesPokemons = pokemons.forEach(function(pokemon) {
+    listaNomes += `O pokemón ${pokemon.name} tem id ${pokemon.id}\n`
+  })
+console.log(listaNomes)
+// O pokemón Bulbasaur tem id 1
+// O pokemón Ivysaur tem id 2
+// O pokemón Charmander tem id 4
+
+//a mesma coisa, com arrow function 
+let outraListaNomes = ''
+const nomesPokemonsArrow = pokemons.forEach(pokemon => outraListaNomes += `O pokemón ${pokemon.name} tem id ${pokemon.id}\n`)
+console.log(outraListaNomes)
+// O pokemón Bulbasaur tem id 1
+// O pokemón Ivysaur tem id 2
+// O pokemón Charmander tem id 4
+```
 
 ### Outros métodos
 
 Não vamos abordar aqui, mas você pode pesquisar mais sobre eles:
 
-- `Object.keys(obj)` / `Object.values(obj)` / `Object.entries(obj)`: Esses métodos retornam uma array com todas as chaves/valores/pares de propriedades próprios de um objeto, mas não na cadeia de protótipos.
+- `array.reduce()`: um método que percorre a array e reduz valores a um único número.
+- `Object.keys(obj)` / `Object.values(obj)` / `Object.entries(obj)`: Esses métodos retornam uma array com todas as chaves/valores/pares de propriedades próprios de um objeto.
 - `Object.getOwnPropertyNames(obj)`: Esse método retorna um array contendo todos os nomes de propriedades próprios (enumeráveis ou não) de um objeto.
 
 ### Links

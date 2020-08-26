@@ -1,38 +1,27 @@
-const helena = {
-  id: 345,
-  nome: 'Helena',
-  cursos: ['front', 'back'],
-  matriculada: true
-}
+const pokemons = 
+[{
+  id: 1,
+  name: "Bulbasaur",
+  type: [ "Grass", "Poison" ],
+}, 
+{
+  id: 2,
+  name: "Ivysaur",
+  type: [ "Grass", "Poison" ],
+}, 
+{
+  id: 4,
+  name: "Charmander",
+  type: [ "Fire" ],
+}]
 
-const joana = {
-  id: 656,
-  nome: 'Joana',
-  cursos: ['front'],
-  matriculada: true
-}
+let listaNomes = ''
+const nomesPokemons = pokemons.forEach(function(pokemon) {
+    listaNomes += `O pokemón ${pokemon.name} tem id ${pokemon.id}\n`
+  })
+console.log(listaNomes)
 
-const marcia = {
-  id: 234,
-  nome: 'Marcia',
-  cursos: ['back', 'ux'],
-  matriculada: false
-}
-
-const alunas = [helena, joana, marcia]
-
-const livro = {
-  titulo: 'Quarto de Despejo',
-  autoria: 'Carolina Maria de Jesus',
-  paginas: 200,
-  categoria: ['literatura brasileira', 'autoras mulheres', 'premiado']
-}
-
-
-for (caracteristica in livro) {
-  console.log(`chave: ${caracteristica}, valor: ${livro[caracteristica]}`)
-}
-
-
-
-
+//a mesma coisa, com arrow function 
+let outraListaNomes = ''
+const nomesPokemonsArrow = pokemons.forEach(pokemon => outraListaNomes += `O pokemón ${pokemon.name} tem id ${pokemon.id}\n`)
+console.log(outraListaNomes)
