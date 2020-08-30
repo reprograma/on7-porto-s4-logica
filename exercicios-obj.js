@@ -10,9 +10,19 @@
 //   autoria: 'Lygia Fagundes Telles'
 // }
 
+function objLivro(titulo, paginas, autoria) {
+  return ({
+    titulo, // mesma coisa que titulo: titulo
+    paginas,
+    autoria
+  }) // parenteses para retornar o objeto diretamente
+}
+
+console.log(objLivro('Antes do Baile Verde', 234, 'Lygia Fagundes Telles'))
+
 // 2) Aproveite a função acima em outra função, que deve retornar a seguinte frase: "O livro XXXX foi escrito por XXX e tem XXX páginas". Você deve utilizar a função que já está pronta, e não reescrever a lógica dela dentro dessa nova função.
 
-// 2) Crie uma função que receba um objeto como o abaixo:
+// 3) Crie uma função que receba um objeto como o abaixo:
 
 // const pessoa = {
 //   nome: 'Nazaré',
@@ -28,7 +38,43 @@
 //   nomeCompleto: 'Nazaré Tedesco'
 // }
 
-// 3) Crie uma função que receba o objeto abaixo e o nome de uma das chaves, e retorne o produto de todos os elementos do array que for selecionado através da chave.
-// Exemplo:
-// somaArray(objetoArrays, 'array2') // 21
+// 4) Crie uma função que receba o objeto abaixo e o nome de uma das chaves, e retorne a soma de todos os elementos do array que for selecionado através da chave.
+
+const objArrays = {
+  array1: [1, 2, 3],
+  array2: [5, 6, 7, 8],
+  array3: [9, 9, 9],
+}
+
+function somaArray(obj, chave) {
+  let total = 0
+  const arr = obj[chave]
+  for (let i = 0; i < arr.length; i++) {
+    total += arr[i]
+  }
+  return total
+}
+// forEach não retorna nada, só faz
+function somaArrayForEach(obj, chave) {
+  let total = 0
+  obj[chave].forEach( function(indice) {
+    total += indice
+  })
+  return total
+}
+// map SEMPRE retorna uma array
+function somaArrayMap(obj, chave) {
+  let total = 0
+  const arrResultados = obj[chave].map( function(indice) {
+    total += indice
+    return total
+  })
+  return arrResultados
+}
+
+console.log(somaArray(objArrays, 'array2')) // 26
+console.log(somaArrayForEach(objArrays, 'array2')) // 26
+console.log(somaArrayMap(objArrays, 'array2')) // [ 5, 11, 18, 26 ]
+
+
 
