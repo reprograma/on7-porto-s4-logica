@@ -6,7 +6,6 @@
 // sempre pensar nas """substituições""" das variáveis pelos valores que estão dentro delas
 // sempre verificar o que estamos recebendo em uma variável pra ver se é o que esperamos
 
-
 //               0   1    2   3    4  5  // índice/posição
 const numeros = [65, 842, 89, 789, 6, 9] //cada elemento
                     
@@ -40,7 +39,10 @@ const objAluna = {
   pets: ["Satanás", "Churrumina"],
   irmaos: [{ nomeCompleto: "Roberta" }, { nomeCompleto: "Mauro" }], // array de objetos
   cidade: {
-    nome: "São Paulo",
+    nome: {
+      nomeCompleto: "São Paulo",
+      apelidinho: "Sampa"
+    },
     bairro: "Pinheiros"
   },
 }
@@ -56,12 +58,12 @@ for (let i = 0; i < objAluna.irmaos.length; i++) {
 const novaArray = objAluna.irmaos.map(function(elementoDaArray) {
   return elementoDaArray.nomeCompleto
 })
-console.log(novaArray)
+// console.log(novaArray)
 
 // forEach não retorna nada, só faz
-objAluna.irmaos.forEach(function(elementoDaArray) {
-  console.log(elementoDaArray.nomeCompleto)
-})
+// objAluna.irmaos.forEach(function(elementoDaArray) {
+//   console.log(elementoDaArray.nomeCompleto)
+// })
 
 //notação de ponto
 console.log(objAluna.idade)
@@ -70,37 +72,63 @@ const variavel = 'idade'
 console.log(objAluna[variavel])
 
 // criando ou alterando chaves e valores de um objeto
+
+// objetos têm propriedades/características
+// objetos têm comportamentos
 const objGato = {
-  nome: "Satanás"
+  nome: "Satanás",
+  miar: function(nome){
+    return `miau, ${nome}`
+  }
 }
 
-objGato.pelagem = "vaquinha"
-console.log(objGato)
+console.log(objGato.miar('Satanás'))
 
-// const pokemons = 
-// [{
-//   id: 1,
-//   name: "Bulbasaur",
-//   type: [ "Grass", "Poison" ],
-// }, 
-// {
-//   id: 2,
-//   name: "Ivysaur",
-//   type: [ "Grass", "Poison" ],
-// }, 
-// {
-//   id: 4,
-//   name: "Charmander",
-//   type: [ "Fire" ],
-// }]
+const pokemons = 
+[{
+  id: 1,
+  name: "Bulbasaur",
+  type: [ "Grass", "Poison" ],
+}, 
+{
+  id: 2,
+  name: "Ivysaur",
+  type: [ "Grass", "Poison" ],
+}, 
+{
+  id: 4,
+  name: "Charmander",
+  type: [ "Fire" ],
+}]
 
-// let listaNomes = ''
-// const nomesPokemons = pokemons.forEach(function(pokemon) {
-//     listaNomes += `O pokemón ${pokemon.name} tem id ${pokemon.id}\n`
-//   })
-// console.log(listaNomes)
+const nomesPokemons = pokemons.map(function(pokemon) {
+    return pokemon.name
+  })
 
+console.log(nomesPokemons)
+  
+pokemons.forEach(function(pokemon) {
+      pokemon.name = "banana"
+    })
+
+console.log(pokemons)
+    
 // //a mesma coisa, com arrow function 
 // let outraListaNomes = ''
 // const nomesPokemonsArrow = pokemons.forEach(pokemon => outraListaNomes += `O pokemón ${pokemon.name} tem id ${pokemon.id}\n`)
 // console.log(outraListaNomes)
+    
+for (let i = 0; i < pokemons.length; i++) {
+  console.log(`nome: ${pokemons[i].name}`)
+}
+
+const arr = [54, 65, 45, 56, 76]
+
+const multiplicaIndicesPares = arr.map((numero, indice) => {
+  if (indice % 2 === 0) {
+    return numero * 2
+  }
+  return numero
+})
+
+console.log(multiplicaIndicesPares)

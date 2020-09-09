@@ -22,6 +22,12 @@ console.log(objLivro('Antes do Baile Verde', 234, 'Lygia Fagundes Telles'))
 
 // 2) Aproveite a função acima em outra função, que deve retornar a seguinte frase: "O livro XXXX foi escrito por XXX e tem XXX páginas". Você deve utilizar a função que já está pronta, e não reescrever a lógica dela dentro dessa nova função.
 
+function fraseLivro(obj) {
+  return `O livro ${obj.titulo} foi escrito por ${obj.autoria} e tem ${obj.paginas} páginas`
+}
+
+// console.log(fraseLivro(objLivro('Antes do Baile Verde', 234, 'Lygia Fagundes Telles')))
+
 // 3) Crie uma função que receba um objeto como o abaixo:
 
 // const pessoa = {
@@ -37,6 +43,28 @@ console.log(objLivro('Antes do Baile Verde', 234, 'Lygia Fagundes Telles'))
 //   sobrenome: 'Tedesco',
 //   nomeCompleto: 'Nazaré Tedesco'
 // }
+
+function nomeCompleto(obj) {
+  const novoObj = {
+    nome: obj.nome,
+    sobrenome: obj.sobrenome,
+    nomeCompleto: `${obj.nome} ${obj.sobrenome}`
+  }
+  return novoObj
+}
+
+// VERSÃO COM ARROW FUNCTION E DESCONSTRUÇÃO
+// const addFullNameProperty = obj => ({
+//   ...obj,
+//   fullName: `${obj.firstName} ${obj.lastName}`,
+// });
+
+const pessoa = {
+  nome: 'Nazaré',
+  sobrenome: 'Tedesco',
+}
+
+// console.log(nomeCompleto(pessoa))
 
 // 4) Crie uma função que receba o objeto abaixo e o nome de uma das chaves, e retorne a soma de todos os elementos do array que for selecionado através da chave.
 

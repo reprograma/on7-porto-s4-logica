@@ -11,8 +11,9 @@ Nessa aula veremos como trabalhar com quantidades maiores de dados ao mesmo temp
 [Objetos](##-Objetos)
 * [Acessando informações de um objeto](###-Acessando-informações-de-um-objeto)
 * [Criando ou alterando um objeto](###-Criando-ou-alterando-um-objeto)
+* [Métodos](###-Métodos)
 
-[Manipulando arrays e objetos](###-Manipulando-arrays-e-objetos)
+[Manipulando arrays e objetos](##-Manipulando-arrays-e-objetos)
 * [`for in` e `for of`](###-For...-in-e-for...-of)
 * [`filter`, `map` e `forEach`](###-`filter`,-`map`,-`forEach`)
   - [`filter`](###-`.filter()`)
@@ -21,6 +22,7 @@ Nessa aula veremos como trabalhar com quantidades maiores de dados ao mesmo temp
 * [Outros métodos](###-Outros-métodos)
 * [Links](###-Links)
 
+[Onde fazer exercícios](##-Links-de-exercícios)
 ***
 
 ## Arrays
@@ -401,6 +403,63 @@ pessoa.matriculada = false
 
 Com a sintaxe acima conseguimos criar novos pares de chave-valor em um objeto; se o par já existir, o valor é substituído.
 
+### Métodos
+
+Quando pensamos em objetos, pensamos em *representações* da realidade. Por exemplo, um livro tem diversas características: título, autoria, número de páginas, etc. Então pode ser *representado* da seguinte forma:
+
+```js
+const objLivro = {
+  titulo: "Dom Casmurro",
+  autoria: "Machado de Assis",
+  paginas: 200,
+  ehPessoaViva: false
+}
+```
+
+Mas, além de listar propriedades, um objeto também pode representar comportamentos. Um objeto pode ter dentro dele *funções* que trazem comportamentos, interagem com as propriedades, fazem cálculos, etc. **Estas funções (chamadas com objetos através da notação `objeto.funcao()`) são chamadas de MÉTODOS**. O JS traz uma série de métodos "prontos" que utilizamos no dia-a-dia, e cada biblioteca que usamos tem seus próprios métodos - isso está ligado ao fato de que praticamente tudo em JS é objeto, mas não vamos entrar em detalhes sobre isso agora. Podemos criar nossos próprios métodos dentro de objetos:
+
+```js
+const objGato = {
+  nome: "Satanás",
+  pelagem: "vaquinha",
+  peso: 6.6,
+  miar: function() {
+    return `O gato ${this.nome} diz: miau`
+  }
+}
+
+console.log(objGato.miar())
+```
+O que é o `this`? Vamos deixar para vocês pesquisarem ;)
+
+Agora vamos ver o mesmo código, utilizando *arrow functions*. Observe as diferenças:
+
+```js
+const objGato = {
+  nome: "Satanás",
+  pelagem: "vaquinha",
+  peso: 6.6,
+  miar: () => `O gato ${objGato.nome} diz: miau`
+}
+
+console.log(objGato.miar())
+```
+
+Assim como qualquer função e como os métodos comuns do JS que já usamos, esses métodos que criamos também podem receber parâmetros:
+
+```js
+const objGato = {
+  nome: "Satanás",
+  pelagem: "vaquinha",
+  peso: 6.6,
+  miar: function(miado) {
+    return `O gato ${this.nome} diz: ${miado}`
+  }
+}
+
+console.log(objGato.miar("minhauuuu"))
+```
+
 ## Manipulando arrays e objetos
 
 Essas duas estruturas são muito comuns quando lidamos com dados:
@@ -596,6 +655,8 @@ const grassPokemonsArrowFunction = pokemons
   .filter(pokemon => pokemon.type.includes("Grass") === true)
 ```
 
+O método `.filter()` aceita um segundo parâmetro, que é o índice que está sendo trabalhando a cada loop. Veja com mais detalhes abaixo, no `.map()`.
+
 #### `.map()`
 
 Com esse método podemos entrar em cada um dos elementos da array, coletando neste processo um valor de retorno para cada elemento visitado. O `.map()` é um dos métodos que mais usamos no dia-a-dia para percorrer arrays, medificá-las e formar novas arrays com os elementos que queremos.
@@ -632,6 +693,21 @@ console.log(nomesPokemons) // [ 'Bulbasaur', 'Ivysaur', 'Charmander' ]
 console.log(nomesPokemonsArrow) // [ 'Bulbasaur', 'Ivysaur', 'Charmander' ]
 ```
 
+E quando precisamos trabalhar com o índice de uma array? O `.map()` também aceita um segundo parâmetro, onde podemos receber o índice da array que está sendo trabalhado!
+
+```js
+const arr = [54, 65, 45, 56, 76]
+
+const multiplicaIndicesPares = arr.map((numero, indice) => {
+  if (indice % 2 === 0) {
+    return numero * 2
+  }
+  return numero
+})
+
+console.log(multiplicaIndicesPares)
+```
+
 #### `forEach()`
 
 "For each" significa, em inglês, "para cada". No contexto, esse método significa que "*para cada* elemento da array, faça X".
@@ -658,6 +734,8 @@ console.log(outraListaNomes)
 // O pokemón Charmander tem id 4
 ```
 
+O `forEach()` também aceita um segundo parâmetro para pegarmos os índices que estão sendo trabalhados.
+
 ### Outros métodos
 
 Não vamos abordar aqui, mas você pode pesquisar mais sobre eles:
@@ -669,4 +747,14 @@ Não vamos abordar aqui, mas você pode pesquisar mais sobre eles:
 ### Links
 
 - [Estruturas de dados](http://braziljs.github.io/eloquente-javascript/chapters/estrutura-de-dados/) no livro JavaScript Eloquente
+
+## Links de exercícios
+
+- Para começar: Lista de exercícios de JavaScript do [W3Schools](https://www.w3schools.com/js/js_exercises.asp). Vai desde os conceitos mais básicos como variáveis.
+
 - Uma lista com mais de [100 exercícios](https://repl.it/community/classrooms/20690) de JS que vão de funções e variáveis até objetos e arrays (em inglês). Precisa criar uma conta no serviço Repl.it para fazer, salvar e testar as respostas.
+
+- [HackerRank](https://www.hackerrank.com/) - muitas empresas usam os testes desse site em vagas.
+
+- [URI](https://www.urionlinejudge.com.br/judge/pt/) - testes de programação e matemática de diversos níveis.
+

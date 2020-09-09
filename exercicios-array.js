@@ -65,5 +65,39 @@ console.log(maioresQueNumero([88,55,0,2,85,81,24,12], 20))
 // Exemplo: recebendo [56, 12, 168, 66] deve retornar 168
 // EXTRA: Pesquisar uma maneira iniciar com o menor número possível (dica: não é zero)
 
+function maiorNumero(arr){
+  // let maiorNum = Number.NEGATIVE_INFINITY
+  let maiorNum = arr[0]
+  for (let i = 0; i < arr.length ; i++) {
+    if (maiorNum < arr[i]) {
+      maiorNum = arr[i]
+    }
+  }
+  return maiorNum
+}
+  
+// console.log(maiorNumero([56, 12, 168, 66]))
+
 // 6) Crie uma função que receba uma array de números inteiros e retorne o menor valor e o maior valor da array, no seguinte formato: "o menor número é X e o maior número é Y".
 // Exemplo, recebendo [5, 37, 18, 59, 12, -5] a função deve retornar "o maior número é 59 e o menor número é -5"
+
+const arrMenoresMaiores = [5, 37, 18, 59, 12, -5]
+
+function imprimeMaiorEMenor(arr) {
+
+  let maior = 0
+  let menor = 0
+
+  for(let i = 0; i < arr.length; i++) {
+    if (arr[i] > maior) {
+      maior = arr[i]
+    }
+    if (arr[i] < menor) {
+      menor = arr[i]
+    }
+  }
+  return `o maior número é ${maior} e o menor número é ${menor}`
+}
+
+console.log(imprimeMaiorEMenor(arrMenoresMaiores))
+

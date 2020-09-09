@@ -17,6 +17,27 @@
 // 5381579886310193
 // 5261400319746371
 
+// SOLUÇÃO - VERSÃO "LONGA"
+
+const arrayNumeros = "5555666677778884".split('')
+const ultimoDigito = Number(arrayNumeros.pop())
+const arrayMultiplicaESoma = arrayNumeros
+  .reverse()
+  .map((numero, i) => {
+    if (i % 2 === 0) {
+      if (numero >= 5) {
+        return (numero * 2) - 9
+      }
+      return numero * 2
+    }
+    return Number(numero)
+  })
+const valorFinal = arrayMultiplicaESoma
+  .reduce((atual, acumulador) => atual + acumulador, ultimoDigito)
+const numeroEhValido = valorFinal % 10 === 0 ? true : false
+
+console.log(numeroEhValido)
+
 ///////////////////////
 
 // DESAFIO - saudar clientes
@@ -52,3 +73,21 @@ const baseClientes = {
     visitas: 3,
   },
 }
+
+const saudarCliente = (nomeCliente) => {
+  if (!baseClientes[nomeCliente]) {
+    return 'Olá, é a primeira vez por aqui?'
+  }
+
+  if (baseClientes[nomeCliente].visitas === 1) {
+    return `Bem-vinda, ${nomeCliente}! Que bom que voltou!`
+  }
+
+  if (baseClientes[nomeCliente].visitas > 1) {
+    return `Bem-vinda mais uma vez, ${nomeCliente}!`
+  }
+
+  return undefined
+}
+
+console.log(saudarCliente('Chiquinha'))
